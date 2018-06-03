@@ -37,10 +37,12 @@ class check_brackets {
 
             if (next == '(' || next == '[' || next == '{') {
                 // Process opening bracket, write your code here
+            		opening_brackets_stack.push(new Bracket(next, position));
             }
 
             if (next == ')' || next == ']' || next == '}') {
                 // Process closing bracket, write your code here
+            		Boolean matchOrNot = opening_brackets_stack.pop().Match(next);
             }
         }
 

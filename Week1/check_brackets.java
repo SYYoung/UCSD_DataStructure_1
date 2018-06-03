@@ -30,6 +30,8 @@ class check_brackets {
         InputStreamReader input_stream = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(input_stream);
         String text = reader.readLine();
+        Boolean matchOrNot = true;
+        int	mismatchPos = 0;
 
         Stack<Bracket> opening_brackets_stack = new Stack<Bracket>();
         for (int position = 0; position < text.length(); ++position) {
@@ -42,10 +44,23 @@ class check_brackets {
 
             if (next == ')' || next == ']' || next == '}') {
                 // Process closing bracket, write your code here
-            		Boolean matchOrNot = opening_brackets_stack.pop().Match(next);
+            		matchOrNot = opening_brackets_stack.pop().Match(next);
+            		if (!matchOrNot) {
+            			mismatchPos = position;
+            			break;
+            		}
             }
         }
-
+        
         // Printing answer, write your code here
+        if (opening_brackets_stack.empty()) {
+        		// the stack is empty. all the brackets are matched
+        		System.out.println("Success");
+        }
+        else {
+        		// there is mismatch
+        		System.out.println(mismatchPos);
+        }
+
     }
 }

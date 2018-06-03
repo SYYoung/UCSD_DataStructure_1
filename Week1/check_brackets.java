@@ -31,7 +31,7 @@ class check_brackets {
         BufferedReader reader = new BufferedReader(input_stream);
         String text = reader.readLine();
         Boolean matchOrNot = true;
-        int	mismatchPos = 0;
+        int	mismatchPos = 1;
 
         Stack<Bracket> opening_brackets_stack = new Stack<Bracket>();
         for (int position = 0; position < text.length(); ++position) {
@@ -46,7 +46,7 @@ class check_brackets {
                 // Process closing bracket, write your code here
             		matchOrNot = opening_brackets_stack.pop().Match(next);
             		if (!matchOrNot) {
-            			mismatchPos = position;
+            			mismatchPos = position+1;
             			break;
             		}
             }

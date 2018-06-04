@@ -34,6 +34,13 @@ public class tree_height {
 				parent[i] = in.nextInt();
 			}
 		}
+		
+		void build() {
+			TreeNode[] myTree = new TreeNode[n];
+			for (int i=0; i<n; i++) {
+				myTree[i] = new TreeNode(i);
+			}
+		}
 
 		int computeHeight() {
                         // Replace this code with a faster implementation
@@ -45,6 +52,20 @@ public class tree_height {
 				maxHeight = Math.max(maxHeight, height);
 			}
 			return maxHeight;
+		}
+	}
+	
+	public class TreeNode {
+		int	nodeNum;
+		LinkedList<TreeNode> children;
+		
+		public TreeNode(int name) {
+			this.nodeNum = name;
+			children = new LinkedList<TreeNode>();
+		}
+		
+		public void addChild(TreeNode childNode) {
+			this.children.add(childNode);
 		}
 	}
 
@@ -61,6 +82,7 @@ public class tree_height {
 	public void run() throws IOException {
 		TreeHeight tree = new TreeHeight();
 		tree.read();
+		tree.build();
 		System.out.println(tree.computeHeight());
 	}
 }

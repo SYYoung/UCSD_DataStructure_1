@@ -25,6 +25,8 @@ public class tree_height {
 	public class TreeHeight {
 		int n;
 		int parent[];
+		TreeNode[] myTree;
+		TreeNode root;
 		
 		void read() throws IOException {
 			FastScanner in = new FastScanner();
@@ -36,9 +38,17 @@ public class tree_height {
 		}
 		
 		void build() {
-			TreeNode[] myTree = new TreeNode[n];
+			myTree = new TreeNode[n];
 			for (int i=0; i<n; i++) {
 				myTree[i] = new TreeNode(i);
+			}
+			for (int i=0; i<n; i++) {
+				int par = parent[i];
+				if (par == -1)
+					root = myTree[i];
+				else {
+					myTree[par].addChild(myTree[i]);
+				}
 			}
 		}
 

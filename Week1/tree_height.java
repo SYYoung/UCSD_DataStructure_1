@@ -87,9 +87,13 @@ public class tree_height {
 		}
 		
 		public void print() {
+			if (this.children.size() == 0) {
+				System.out.println("\t null.");
+			}
 			for (TreeNode node:this.children) {
 				System.out.print("\t" + "," + node.nodeNum);
 			}
+			System.out.println();
 		}
 	}
 

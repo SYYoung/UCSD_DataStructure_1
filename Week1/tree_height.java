@@ -51,6 +51,14 @@ public class tree_height {
 				}
 			}
 		}
+		
+		void print() {
+			for (int i=0; i<n; i++) {
+				System.out.println("Tree node number" + myTree[i].nodeNum);
+				System.out.println("\t" + "the children are:");
+				myTree[i].print();
+			}
+		}
 
 		int computeHeight() {
                         // Replace this code with a faster implementation
@@ -77,6 +85,12 @@ public class tree_height {
 		public void addChild(TreeNode childNode) {
 			this.children.add(childNode);
 		}
+		
+		public void print() {
+			for (TreeNode node:this.children) {
+				System.out.print("\t" + "," + node.nodeNum);
+			}
+		}
 	}
 
 	static public void main(String[] args) throws IOException {
@@ -93,6 +107,7 @@ public class tree_height {
 		TreeHeight tree = new TreeHeight();
 		tree.read();
 		tree.build();
+		tree.print();
 		System.out.println(tree.computeHeight());
 	}
 }

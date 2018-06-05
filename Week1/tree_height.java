@@ -90,6 +90,7 @@ public class tree_height {
 			for (TreeNode node:this.children) {
 				System.out.print("\t" + "," + node.nodeNum);
 			}
+			System.out.println();
 		}
 	}
 

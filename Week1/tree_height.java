@@ -76,6 +76,28 @@ public class tree_height {
 			int height = getHeightRecursive(root);
 			return height;
 		}
+		int getHeightIteration(TreeNode curNode) {
+			if (curNode == null)
+				return 0;
+			Queue<TreeNode> q = new LinkedList();
+			q.add(root);
+			int height = 0;
+			
+			while (true) {
+				int nodeCount = q.size();
+				if (nodeCount == 0)
+					return height;
+				height++;
+				
+				while (nodeCount >0) {
+					TreeNode newNode = q.peek();
+					q.remove();
+					for (TreeNode child: newNode.children) 
+						q.add(child);
+					nodeCount--;
+				}
+			}
+		}
 		
 		int getHeightRecursive(TreeNode curNode) {
 			int levels = 0;

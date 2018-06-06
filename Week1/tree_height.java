@@ -60,7 +60,7 @@ public class tree_height {
 			}
 		}
 
-		int computeHeight() {
+		int computeHeight1() {
                         // Replace this code with a faster implementation
 			int maxHeight = 0;
 			for (int vertex = 0; vertex < n; vertex++) {
@@ -70,6 +70,15 @@ public class tree_height {
 				maxHeight = Math.max(maxHeight, height);
 			}
 			return maxHeight;
+		}
+		
+		int computeHeight() {
+			int height = getHeight(root);
+			return height;
+		}
+		
+		int getHeight(TreeNode curNode) {
+			
 		}
 	}
 	
@@ -91,6 +100,10 @@ public class tree_height {
 				System.out.print("\t" + "," + node.nodeNum);
 			}
 			System.out.println();
+		}
+		
+		public boolean isLeaf() {
+			return (this.children.isEmpty());
 		}
 	}
 

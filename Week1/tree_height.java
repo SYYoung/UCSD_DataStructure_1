@@ -73,12 +73,26 @@ public class tree_height {
 		}
 		
 		int computeHeight() {
-			int height = getHeight(root);
+			int height = getHeightRecursive(root);
 			return height;
 		}
 		
-		int getHeight(TreeNode curNode) {
+		int getHeightRecursive(TreeNode curNode) {
+			int levels = 0;
+			if (curNode == null) {
+				return levels;
+			}
+			if (curNode.children.isEmpty()) {
+				return 1;
+			}
 			
+			for (TreeNode child: curNode.children) {
+				int childHeight = getHeightRecursive(child);
+				if (childHeight > levels) {
+					levels = childHeight;
+				}
+			}
+			return levels+1;
 		}
 	}
 	

@@ -72,10 +72,20 @@ public class tree_height {
 			return maxHeight;
 		}
 		
-		int computeHeight() {
-			int height = getHeightRecursive(root);
+		int computeHeight(int method) {
+			int height = 0;
+			if (method == 0) {
+				System.out.println("From Recursive:");
+				height = getHeightRecursive(root);
+			}
+			else {
+				System.out.println("From Iteration:");
+				height = getHeightIteration(root);
+			}
 			return height;
+			
 		}
+		
 		int getHeightIteration(TreeNode curNode) {
 			if (curNode == null)
 				return 0;
@@ -83,7 +93,7 @@ public class tree_height {
 			q.add(root);
 			int height = 0;
 			
-			while (true) {
+			while (!q.isEmpty()) {
 				int nodeCount = q.size();
 				if (nodeCount == 0)
 					return height;
@@ -97,6 +107,7 @@ public class tree_height {
 					nodeCount--;
 				}
 			}
+			return height;
 		}
 		
 		int getHeightRecursive(TreeNode curNode) {
@@ -161,6 +172,8 @@ public class tree_height {
 		tree.read();
 		tree.build();
 		tree.print();
-		System.out.println(tree.computeHeight());
+		System.out.println(tree.computeHeight(0));
+		System.out.println();
+		System.out.println(tree.computeHeight(1));
 	}
 }

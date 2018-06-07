@@ -139,13 +139,10 @@ public class tree_height {
 				System.out.print("\t" + "," + node.nodeNum);
 			}
 			System.out.println();
-<<<<<<< HEAD
 		}
 		
 		public boolean isLeaf() {
 			return (this.children.isEmpty());
-=======
->>>>>>> f42d6dbf3c2a0ce331eb2da825f7892c814d815e
 		}
 	}
 

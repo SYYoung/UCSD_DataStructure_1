@@ -2,6 +2,7 @@ package Week1;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 class Request {
@@ -27,16 +28,36 @@ class Response {
 class Buffer {
     public Buffer(int size) {
         this.size_ = size;
-        this.finish_time_ = new ArrayList<Integer>();
+        this.finish_time_ = new LinkedList<Integer>();
     }
 
     public Response Process(Request request) {
-        // write your code here
-        return new Response(false, -1);
+        // 1. if check if there is any request has been finished 
+    		int curTime = request.arrival_time;
+    		while (!this.finish_time_.isEmpty()) {
+    			if (this.finish_time_.getFirst() <= curTime) {
+    				this.finish_time_.removeFirst();
+    			}
+    			else
+    				break;
+    		}
+    		// check the buffer has capacity
+    		if (this.finish_time_.size() == this.size_) { // the buffer is full
+    			return new Response(true, -1);
+    		}
+    		else {
+    			int done_time;
+    			if (this.finish_time_.isEmpty()) 
+    				done_time = request.arrival_time + request.process_time;
+    			else
+    				done_time = this.finish_time_.getLast() + request.process_time;
+    			this.finish_time_.addLast(done_time);
+    			return new Response(true, this.finish_time_.getLast());
+    		}
     }
 
     private int size_;
-    private ArrayList<Integer> finish_time_;
+    private LinkedList<Integer> finish_time_;
 }
 
 class process_packages {

@@ -46,13 +46,17 @@ class Buffer {
     			return new Response(true, -1);
     		}
     		else {
-    			int done_time;
-    			if (this.finish_time_.isEmpty()) 
+    			int done_time, start_time;
+    			if (this.finish_time_.isEmpty()) {
     				done_time = request.arrival_time + request.process_time;
-    			else
+    				start_time = request.arrival_time;
+    			}
+    			else {
     				done_time = this.finish_time_.getLast() + request.process_time;
+    				start_time = this.finish_time_.getLast();
+    			}
     			this.finish_time_.addLast(done_time);
-    			return new Response(true, this.finish_time_.getLast());
+    			return new Response(false, start_time);
     		}
     }
 
